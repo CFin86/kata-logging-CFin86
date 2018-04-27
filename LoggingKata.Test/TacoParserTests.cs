@@ -8,14 +8,20 @@ namespace LoggingKata.Test
         [Fact]
         public void ShouldDoSomething()
         {
-            // TODO: Complete Something, if anything
+            int x = 5;
+            int y = 5;
+            int expected = 25;
+            Assert.Equal(expected, x * y);
         }
 
         [Theory]
-        [InlineData("Example")]
+        [InlineData("-84.677017, 34.073638,\"Taco Bell Acwort... " +
+                    "(Free trial * Add to Cart for a full POI info)")]
         public void ShouldParse(string str)
         {
-            // TODO: Complete Should Parse
+            var testParser = new TacoParser();
+            var results = testParser.Parse(str);
+            Assert.NotNull(results);
         }
 
         [Theory]
@@ -23,7 +29,9 @@ namespace LoggingKata.Test
         [InlineData("")]
         public void ShouldFailParse(string str)
         {
-            // TODO: Complete Should Fail Parse
+            var testParser = new TacoParser();
+            var results = testParser.Parse(str);
+            Assert.Null(results);
         }
     }
 }
