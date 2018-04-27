@@ -26,8 +26,9 @@
             var lon = double.Parse(cells[0]);
             var lat = double.Parse(cells[1]);
             var name = cells[2];
-            var location = new Point(lon, lat);
-            return new TacoBell(name, location);
+
+            var location = new Point { Longitude = lon, Latitude = lat };
+            return new TacoBell { Name = name, Location = location };
             //DO not fail if one record parsing fails, return null
             //TODO Implement
             //return null;

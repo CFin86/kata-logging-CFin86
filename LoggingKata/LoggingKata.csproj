@@ -11,6 +11,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Geolocation" Version="1.1.1" />
+    <PackageReference Include="GeoCoordinate" Version="1.0.0" />
   </ItemGroup>
 </Project>
