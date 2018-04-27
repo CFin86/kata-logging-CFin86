@@ -40,31 +40,34 @@ namespace LoggingKata
                 var locations = lines.Select(parser.Parse).ToArray();
 
                 //var locations = lines.Select(parser.Parse);
-               // ITrackable locA = null;
-                //ITrackable locB = null;
+                ITrackable a = null;
+                ITrackable b = null;
                 double dist1 = 0.0;
-                for (int i = 0; i < locations.Count(); i++)
+                foreach (var locA in locations)
                 {
-                    var aCoord1 = locations[i].Location.Latitude;
-                    var aCoord2 = locations[i].Location.Longitude;
+                    var origin = new GeoCoordinate(locA.Location.Latitude, locA.Location.Longitude);
 
-                   var pin1 = new GeoCoordinate(aCoord1, aCoord2);
-                    for (int j = i; j < locations.Count(); j++)
+
+               
+                    foreach (var locB in locations)
                     {
-                        var bCoord1 = locations[j].Location.Longitude;
-                        var bCoord2 = locations[j].Location.Latitude;
-                        var pin2 = new GeoCoordinate(bCoord1, bCoord2);
-                       var dist2 = pin1.GetDistanceTo(pin2);
-                        if (dist2 > dist1)
+                        var dest = new GeoCoordinate(locB.Location.Latitude, locB.Location.Longitude);
+                      
+                       var dist2 = origin.GetDistanceTo(dest);
+                        if (!(dist2 > dist1))
                         {
-                            dist1 = dist2;
+                            continue;
 
                         }
-                        //Console.WriteLine("this is the farthest distance" + dist1);
+                        a = locA;
+                        b = locB;
+                        dist2 = dist1;
                     }
                 }
               
-                Console.WriteLine("this is the farthest distance" + dist1);
+                Console.WriteLine($"These are the two Taco Bells furthest apart from each other: \n\t{a?.Name} and \n\t{b?.Name}");
+                Console.WriteLine($"They are {dist1 / 0.000621371} miles apart.");
+                Console.ReadLine();
             }
         }
     }
