@@ -1,12 +1,14 @@
-﻿namespace LoggingKata
+﻿using System;
+
+namespace LoggingKata
 {
-    /// <summary>
-    /// Parses a POI file to locate all the TacoBells
-    /// </summary>
+    /* <summary>
+    Parses a POI file to locate all the TacoBells
+    </summary> */
     public class TacoParser
     {
         readonly ILog logger = new TacoLogger();
-        
+
         public ITrackable Parse(string line)
         {
             logger.LogInfo("Begin parsing");
@@ -18,20 +20,31 @@
             }
 
             var cells = line.Split(',');
-            if (cells.Length < 3)
+            if (cells.Length < 2)
             {
                 logger.LogError("Hey, looks like your input doesn't have the coorect amount of columns");
                 return null;
-            } 
-            var lon = double.Parse(cells[0]);
-            var lat = double.Parse(cells[1]);
-            var name = cells[2];
+            }
 
-            var location = new Point { Longitude = lon, Latitude = lat };
-            return new TacoBell { Name = name, Location = location };
-            //DO not fail if one record parsing fails, return null
-            //TODO Implement
-            //return null;
+            try
+            {
+                var lat = double.Parse(cells[0]);
+                var lon = double.Parse(cells[1]);
+                if (lat > 90 || lat > 0 || lon < 0 || lon > 180)
+                {
+                    logger.LogError("This number is out of the range of lat/lon");
+                    return null;
+                }
+
+                var location = new Point { Latitude = lat, Longitude = lon };
+                var name = cells.Length > 2 ? cells[2] : null;
+                return new TacoBell(name, location);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("Failure", ex);
+                return null;
+            }
         }
     }
 }
