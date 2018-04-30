@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.IO;
-using System.Reflection.Emit;
-using System.Reflection.Metadata.Ecma335;
 using GeoCoordinatePortable;
 
 namespace LoggingKata
@@ -31,7 +29,7 @@ namespace LoggingKata
                 var locations = lines.Select(parser.Parse).ToArray();
                 ITrackable a = null;
                 ITrackable b = null;
-                double dist1 = 0;
+                var dist1 = 0.0;
 
                 foreach (var locA in locations)
                 {

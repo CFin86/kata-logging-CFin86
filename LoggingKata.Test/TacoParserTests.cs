@@ -8,9 +8,9 @@ namespace LoggingKata.Test
         [Fact]
         public void ShouldDoSomething()
         {
-            int x = 5;
-            int y = 5;
-            int expected = 25;
+            var x = 5;
+            var y = 5;
+            var expected = 25;
             Assert.Equal(expected, x * y);
         }
 
