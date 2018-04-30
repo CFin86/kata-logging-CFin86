@@ -28,8 +28,8 @@ namespace LoggingKata.Test
         [Theory]
         [InlineData(null)]//Testing for Null
         [InlineData("")]//Testing for empty string
-        [InlineData("91,181")]//Testing for > Max Lat, Max Lon
-        [InlineData("-1, -1")]//Testing for < Min Lat, Min Lon
+        [InlineData("181, 91")]//Testing for > Max Lon, Max Lat
+        [InlineData("-181, -91")]//Testing for < Min Lon, Min Lat
         [InlineData("c,s")]//Testing for incorrect input values
         [InlineData("abc,abc,abc")] // further testing of incorrect input values
         [InlineData("1234,1234,1234")] //furthest tesing of incorrect input values

@@ -28,9 +28,9 @@ namespace LoggingKata
 
             try
             {
-                var lat = double.Parse(cells[0]);
-                var lon = double.Parse(cells[1]);
-                if (lat > 90 || lat > 0 || lon < 0 || lon > 180)
+                var lon = double.Parse(cells[0]);
+                var lat = double.Parse(cells[1]);
+                if (lat > 90 || lat < -90 || lon < -180 || lon > 180)
                 {
                     logger.LogError("This number is out of the range of lat/lon");
                     return null;

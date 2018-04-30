@@ -35,12 +35,11 @@ namespace LoggingKata
 
                 foreach (var locA in locations)
                 {
-                    var origin = new GeoCoordinate(locA.Location.Latitude, locA.Location.Longitude);
+                    var origin = new GeoCoordinate(locA.Location.Longitude, locA.Location.Latitude);
                     foreach (var locB in locations)
                     {
-                        var dest = new GeoCoordinate(locB.Location.Latitude, locB.Location.Longitude);
+                        var dest = new GeoCoordinate(locB.Location.Longitude, locB.Location.Latitude);
                         var dist2 = origin.GetDistanceTo(dest);
-                        Console.WriteLine("location B" + locB.Location.Longitude);
                         if (!(dist2 > dist1))
                         {
                             continue;
