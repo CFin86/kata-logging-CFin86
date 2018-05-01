@@ -10,4 +10,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="GeoCoordinate" Version="1.0.0" />
+  </ItemGroup>
 </Project>
